@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         X (Twitter) Server-Side Age-Gate & Tombstone Bypass (No VPN)
+// @name         X (Twitter) Server-Side Age-Gate (No VPN)
 // @namespace    https://github.com/Main-66/x-age-gate-bypass
 // @version      1.0.2
 // @description  Bypass server-stripped EU/UK age-restricted posts and sensitive tombstones on X (Twitter) without a VPN or ID verification using the public FxTwitter API.
