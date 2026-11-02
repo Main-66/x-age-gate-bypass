@@ -1,7 +1,7 @@
 # 🔓 X (Twitter) Server-Side Age-Gate & Tombstone Bypass
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.0.2-brightgreen.svg)](https://github.com/Main-66/x-age-gate-bypass/raw/main/x-age-gate-bypass.user.js)
+[![Version](https://img.shields.io/badge/version-2.0.3-brightgreen.svg)](https://github.com/Main-66/x-age-gate-bypass/raw/main/x-age-gate-bypass.user.js)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-zero-orange.svg)](#privacy--security)
 
 A lightweight, dependency-free userscript that bypasses **server-stripped EU/UK age-restricted posts** and sensitive media tombstones on X (Twitter) **without a VPN or ID upload**.
@@ -24,9 +24,13 @@ However, under **EU Digital Services Act (DSA)** and **UK Online Safety Act** en
 ## Features
 
 * **True Server-Side Bypass (No VPN Required):** Recovers posts stripped at the server level in EU/UK/regulated regions without submitting a selfie or government ID.
-* **Click-to-Unlock or Auto-Unlock:** Injects a `🔓 Unlock Tweet via FxTwitter` button inside restricted tombstone banners, or can be toggled to **Auto-Unlock** automatically via your userscript manager menu.
-* **Force-Unlock Menu Command:** Includes a `🔓 Force-Unlock Current Post URL` command in the extension popup menu as a manual fallback if X updates its DOM structure.
+* **Two Unlock Modes** (toggle from your userscript manager menu):
+  * **Default — button below the post:** Injects a `🔓 Unlock Tweet` button at the bottom of the restricted post (below the reply / repost / like / bookmark / share bar). Clicking it fetches and renders the unlocked content in place of the button.
+  * **Auto-Unlock — in-place replacement:** Hides the tombstone message, inserts the unlock button where the restricted block was, then auto-fetches and replaces it with the rendered content.
+* **Preserves Native Actions:** In both modes, the original post's author header and the reply / repost / like / bookmark / share / menu buttons are never hidden or replaced.
+* **Force-Unlock Menu Command:** Adds a `🔓 Force-Unlock Current Post URL` command to the userscript manager menu as a manual fallback if X updates its DOM structure.
 * **Full Media & Quote Support:** Renders multi-photo grids, native HTML5 video/GIF players, post text, and nested quoted tweets in native X dark-mode styling.
+* **SPA-Aware Scanning:** Re-scans on X's internal navigation (`pushState` / `popstate`), on DOM mutations, and on a 3-second safety interval, so tombstones are detected wherever you scroll.
 
 ---
 
@@ -39,9 +43,9 @@ However, under **EU Digital Services Act (DSA)** and **UK Online Safety Act** en
 
 ---
 
-## Firefox / LibreWolf Setup (Violentmonkey)
+## Violentmonkey Setup
 
-If you use **Violentmonkey** on a Gecko-based browser (**Firefox, LibreWolf, Floorp, Zen**), X's strict Content Security Policy (CSP) can block userscripts under default settings. Enable the following:
+If you use **Violentmonkey** on a Gecko-based browser (**Firefox, LibreWolf, Floorp, Zen**), X's strict Content Security Policy (CSP) can block userscripts under default settings. If tombstones aren't detected or the unlock button never appears:
 
 1. Open **Violentmonkey Dashboard -> Settings -> Advanced**.
 2. Under `Injection mode: auto`, check:
@@ -49,6 +53,19 @@ If you use **Violentmonkey** on a Gecko-based browser (**Firefox, LibreWolf, Flo
    * `☑ Alternative <page> mode`
    * `☑ Bypass CSP in Firefox`
 3. Hard-refresh X (`Ctrl + Shift + R`).
+
+---
+
+## Tampermonkey Setup (Chrome, Edge, Brave, etc.)
+
+If you have Tampermonkey installed but the unlock button never appears, or nothing happens when you click it, make sure the **"Allow User Scripts"** toggle is enabled.
+
+This is required for userscript injection on modern Chrome-based browsers. The extension can show as enabled while this separate permission is turned off.
+
+1. Right-click the **Tampermonkey** icon in your browser toolbar and select **"Manage Extension"**.
+   *(Alternatively, go to `chrome://extensions/` and click **Details** on Tampermonkey.)*
+2. Find the **"Allow User Scripts"** toggle and turn it **ON**.
+3. Reload the X tab and try again.
 
 ---
 
